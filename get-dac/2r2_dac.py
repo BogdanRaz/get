@@ -11,6 +11,7 @@ class R2R_DAC:
 def deinit(self):
     GPIO.output(self.gpio_bits, 0)
     GPIO.cleanup()
+    
 if __name__ == "__main__":
     try:
         dac = R2R_DAC([16, 20, 21, 25, 26, 17, 27, 22], 3.183, True)
