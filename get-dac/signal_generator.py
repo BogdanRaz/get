@@ -6,5 +6,8 @@ def get_sin_wave_amplitude(freq, t):
 def get_triangle_wave_amplitude(freq, t):
     return np.abs(2 * np.mod(t * freq, 1) - 1)
 
+def get_triangle_wave_amplitude(freq, t):
+    return np.abs(2 * (freq * t - np.floor(freq * t + 0.5)))
+
 def wait_for_sampling_period(sampling_frequency):
     time.sleep(1.0 / sampling_frequency)
