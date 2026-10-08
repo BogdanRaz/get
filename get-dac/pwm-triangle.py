@@ -3,14 +3,14 @@ import time
 import signal_generator as sg
 
 amplitude = 2.2
-signal_frequency = 10
+signal_frequency = 1
 sampling_frequency = 1000
 dynamic_range = 3.3
 
 if __name__ == "__main__":
     dac = None
     try:
-        dac = pwm.PwM_DAC(12, 1000, dynamic_range, verbose=False)
+        dac = pwm.PWM_DAC(12, 1000, dynamic_range, verbose=False)
         print("Генерация треугольного сигнала")
         while True:
             t = time.time()

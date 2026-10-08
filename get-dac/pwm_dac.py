@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-class PwM_DAC:
+class PWM_DAC:
     def __init__(self, gpio_pin, pwm_frequency, dynamic_range, verbose=False):
         self.gpio_pin = gpio_pin
         self.pwm_frequency = pwm_frequency
@@ -10,7 +10,7 @@ class PwM_DAC:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.gpio_pin, GPIO.OUT)
 
-        self.pwm = GPIO.PwM(self.gpio_pin, self.pwm_frequency)
+        self.pwm = GPIO.PWM(self.gpio_pin, self.pwm_frequency)
         self.pwm.start(0)
         
     def deinit(self):
@@ -31,7 +31,7 @@ class PwM_DAC:
 if __name__ == "__main__":
     dac = None
     try:
-        dac = PwM_DAC(12, 1000, 3.183, verbose=True)
+        dac = PWM_DAC(12, 1000, 3.183, verbose=True)
         while True:
             try:
                 v = float(input("Ведите напряжение в Вольтах:"))

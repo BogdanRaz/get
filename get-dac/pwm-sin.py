@@ -10,9 +10,8 @@ dynamic_range = 3.183
 if __name__ == "__main__":
     dac = None 
     try:
-        dac = pwm.PwM_DAC(12, 1000, dynamic_range, verbose=False)
+        dac = pwm.PWM_DAC(12, 1000, dynamic_range, verbose=False)
         print(" Генерация запущена")
-
 
         while True:
             t = time.time()
