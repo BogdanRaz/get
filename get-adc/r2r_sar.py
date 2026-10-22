@@ -12,11 +12,12 @@ duration = 3.0
 try:
     time_start = time.time()
     while time.time() - time_start < duration:
-        v = adc.get_sar_voltage()
+        v = adc.get_sc_voltage()
         t = time.time()
         times += [t]
         voltages += [v]
     plott.plot_voltage_vs_time(times, voltages, max_voltage)
     plott.plot_sampling_period_hist(times)
 finally:
-    adc.deinit()
+    adc.__del__()
+   

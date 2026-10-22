@@ -19,4 +19,5 @@ try:
     plott.plot_voltage_vs_time(times, voltages, max_voltage)
     plott.plot_sampling_period_hist(times)
 finally:
-    adc.deinit()
+        adc.__del__()
+    
