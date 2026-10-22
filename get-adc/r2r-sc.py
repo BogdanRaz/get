@@ -1,22 +1,22 @@
+import r2r_adc as r2r
+import adc_plot as plott
 import time
-from r2r_adc import R2R_ADC
-from adc_plot import plot_voltage_vs_time
 
-if __name__ == "__main__":
-    DYNAMIC_RANGE = 3.3
-    adc = R2R_ADC(dynamic_range=DYNAMIC_RANGE, compare_time=0.0001, verbose=False)
-    voltage_values = []
-    time_values = []
-    duration = 3.0
+max_voltage = 3.183
 
-    try:
-        start_time = time.time()
-        while (time.time() - start_time) < duration:
-            voltage_values.append(adc.get_sc_voltage())
-            time_values.append(time.time() - start_time)
+adc = r2r.R2R_ADC(max_voltage, compare_time=0.0001)
+voltages = []
+times = []
+duration = 3.0
 
-        plot_voltage_vs_time(time_values, voltage_values)
-        plot_sampling_period_hist(time_values)
-
-    finally:
-        adc.__del__()
+try:
+    time_start = time.time()
+    while time.time() - time_start < duration:
+        v = adc.get_sc_voltage()
+        t = time.time()
+        times += [t]
+        voltages += [v]
+    plott.plot_voltage_vs_time(times, voltages, max_voltage)
+    plott.plot_sampling_period_hist(times)
+finally:
+    adc.__del__()
